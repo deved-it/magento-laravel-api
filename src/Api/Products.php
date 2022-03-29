@@ -9,7 +9,7 @@ class Products extends AbstractApi
      *
      * @param  int  $pageSize
      * @param  int  $currentPage
-     * @return array
+     * @return \Illuminate\Http\Client\Response
      */
     public function all($pageSize = 50, $currentPage = 1, $filters = [])
     {
@@ -23,7 +23,7 @@ class Products extends AbstractApi
      * Get info about product by product SKU.
      *
      * @param  string  $sku
-     * @return array
+     * @return \Illuminate\Http\Client\Response
      */
     public function show($sku)
     {
@@ -35,7 +35,7 @@ class Products extends AbstractApi
      *
      * @param  string  $sku
      * @param  array  $body
-     * @return array
+     * @return array|\Illuminate\Http\Client\Response|void
      */
     public function edit($sku, $body = [])
     {
