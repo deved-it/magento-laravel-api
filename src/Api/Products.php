@@ -4,6 +4,7 @@ namespace Grayloon\Magento\Api;
 
 class Products extends AbstractApi
 {
+
     /**
      * The list of Products.
      *
@@ -40,5 +41,12 @@ class Products extends AbstractApi
     public function edit($sku, $body = [])
     {
         return $this->put('/products/'.$sku, $body);
+    }
+
+    public function createAttributesOption($attributeCode, $option)
+    {
+        return $this->post('/products/attributes/' . $attributeCode . '/options', [
+            'option' => $option
+        ]);
     }
 }
