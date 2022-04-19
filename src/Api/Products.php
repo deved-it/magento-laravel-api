@@ -49,4 +49,11 @@ class Products extends AbstractApi
             'option' => $option
         ]);
     }
+
+    public function create($body)
+    {
+        return $this->post('/products/', [
+            "product" => $body
+        ]);
+    }
 }

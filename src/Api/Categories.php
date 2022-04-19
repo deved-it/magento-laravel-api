@@ -9,7 +9,7 @@ class Categories extends AbstractApi
      *
      * @param  int  $pageSize
      * @param  int  $currentPage
-     * @return array
+     * @return \Illuminate\Http\Client\Response
      */
     public function all($pageSize = 50, $currentPage = 1)
     {
@@ -23,12 +23,37 @@ class Categories extends AbstractApi
      * Get products assigned to category.
      *
      * @param  int  $categoryId
-     * @return array
+     * @return \Illuminate\Http\Client\Response
      */
     public function products($categoryId)
     {
         $this->validateSingleStoreCode();
 
         return $this->get('/categories/'.$categoryId.'/products');
+    }
+
+    /**
+     * create category
+     * @param array $body
+     * @return \Illuminate\Http\Client\Response
+     */
+    public function create($body)
+    {
+        return $this->post('/categories/', [
+           'category' => $body
+        ]);
+    }
+
+    /**
+     * @param $category_id
+     * @param $depth
+     * @return \Illuminate\Http\Client\Response
+     */
+    public function children($category_id, $depth)
+    {
+        return $this->get('/categories/', [
+            'depth' => $depth,
+            'rootCategoryId' => $category_id
+        ]);
     }
 }
